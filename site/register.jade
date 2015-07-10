@@ -1,0 +1,14 @@
+doctype html
+html
+    head
+        title FSPugs Register
+        link(href='css/bootstrap.min.css' rel='stylesheet')
+    body
+        if message
+            p.message #{message}
+
+        p.title Register
+        form(action='/register', method='post', class='form-inline')
+            input(type='text', name='user', placeholder='Username', class='form-control')
+            input(type='password', name='pass', placeholder='Password', class='form-control')
+            input(type='submit', value='Register', class='btn btn-primary')
