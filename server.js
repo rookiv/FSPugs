@@ -22,8 +22,13 @@ require('./routes/auth.js')(app);
  * Views
  */
 
-app.get('/', function (req, res, next) {
+app.get('/', function (req, res) {
     res.render('index.jade');
+});
+
+app.get('/init', function (req, res) {
+    models.sequelize.sync({force: true});
+    res.json('re-initializing...');
 });
 
 /**

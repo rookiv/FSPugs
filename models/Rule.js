@@ -1,9 +1,11 @@
 module.exports = function (sequelize, Sequelize) {
-    var User = sequelize.define('User', {
-        username: {
+    var Rule = sequelize.define('Rule', {
+        description: {
             type: Sequelize.STRING,
-            allowNull: false,
-            unique: true
+            allowNull: false
+        },
+        status: {
+            type: Sequelize.STRING
         }
     }, {
         freezeTableName: true,
@@ -13,5 +15,5 @@ module.exports = function (sequelize, Sequelize) {
         }
     });
 
-    return User;
+    return Rule;
 };
