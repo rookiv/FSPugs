@@ -1,7 +1,7 @@
 module.exports = function (app) {
     var bcrypt = require('bcrypt-nodejs');
 
-    var passport = require('passport')
+    var passport = require('passport');
     var LocalStrategy = require('passport-local').Strategy;
 
     var session = require('express-session');
@@ -48,15 +48,16 @@ module.exports = function (app) {
             passwordField: 'pass'
         },
         function (username, password, done) {
-            models.User.find({
-                where: {
-                    phone: username
-                }
+            models.Player.find({
+                where: models.Sequelize.or(
+                    {email: username},
+                    {username: username}
+                )
             }).then(function (user) {
                 if (user == null)
                     return done(null, false);
 
-                if (bcrypt.compareSync(password, user.username)) {
+                if (bcrypt.compareSync(password, user.password)) {
                     return done(null, {
                         id: user.id,
                         username: user.username
@@ -92,7 +93,7 @@ module.exports = function (app) {
     });
 
     app.post('/register', function (req, res) {
-        models.User.find({
+        models.Player.find({
             where: {
                 username: req.body.user
             }
@@ -101,8 +102,9 @@ module.exports = function (app) {
                 console.log('User already found');
                 res.render('register.jade', {user: req.user, message: 'User already exists!'});
             } else {
-                models.User.create({
-                    password: bcrypt.hashSync(req.body.pass),
+                models.Player.create({
+                    username: req.body.user,
+                    password: bcrypt.hashSync(req.body.pass)
                 }).then(function (result) {
                     console.log('User created.');
                     res.render('register.jade', {user: req.user, message: 'User successfully registered!'});
