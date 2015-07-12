@@ -3,6 +3,61 @@ html
     head
         title Fractured Pugs
         link(href='css/bootstrap.min.css' rel='stylesheet')
+        link(href='css/index.css' rel='stylesheet')
     body
         if message
             p.message #{message}
+
+        .top-bar
+            a(href='/')
+                img(src='img/logo.png' alt='logo')
+            a(href='/leaders' class=path == '/leaders' ? 'active' : undefined) Leaderboards
+            a(href='/profile' class=path == '/profile' ? 'active' : undefined) Profile
+            a.create(href='/match/new' class=path == '/match' ? 'hidden' : undefined)
+                span Create Pug
+            a.register.btn.btn-primary(href='/register') Sign Up
+            a.login.btn.btn-primary(href='/login') Login
+
+        .match
+            if personal
+                .match-title Your Matches
+                    .personal
+                        .pug-box.panel.panel-danger
+                            .panel-heading
+                                .pug-name.panel-title Test Match
+                            .panel-body
+                                .pug-desc Description: Blah blah blah blarg
+                                ul.pug-rules Rules:
+                                    li.pug-rule Max 2 ship type per team
+                                    li.pug-rule No plasma caster
+                                ul.pug-players Players (3/10)
+                                    li.pug-player rukqoa
+                                    li.pug-player [MLG PRO] tester with super super long name that is supposed to break all your shit yo ahsjakuhisukajhsuiakhnfjhbgkuajnsajksn
+                                    li.pug-player cool guy #3
+            .match-title Open Matches
+            .open
+                .pug-box.panel.panel-danger
+                    .panel-heading
+                        a.pug-join(href='/match/join')
+                            img(src='img/join.png')
+                            span Join
+                            img(src='img/join.png')
+                        .pug-name.panel-title Test Match
+                    .panel-body
+                        .pug-desc Description: Blah blah blah blarg
+                        ul.pug-rules Rules:
+                            li.pug-rule Max 2 ship type per team
+                            li.pug-rule No plasma caster
+                        ul.pug-players Players (9/10)
+                            li.pug-player rukqoa
+                            li.pug-player [MLG PRO] tester with super super long name that is supposed to break all your shit yo ahsjakuhisukajhsuiakhnfjhbgkuajnsajksn
+                            li.pug-player cool guy #3
+                            li.pug-player cool guy #4
+                            li.pug-player cool guy #5
+                            li.pug-player cool guy #6
+                            li.pug-player cool guy #7
+                            li.pug-player cool guy #8
+                            li.pug-player cool guy #9
+        script(src='js/jquery-2.1.4.min.js')
+        script(src='js/masonry.min.js')
+        script(src='js/index.js')

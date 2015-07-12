@@ -87,7 +87,8 @@ module.exports = function (app) {
                 if (err) {
                     return res.render('login.jade', {message: 'Login failed!'});
                 }
-                return res.render('index.jade');
+                req.session.message = 'Login successful';
+                return res.redirect('/');
             });
         })(req, res, next);
     });

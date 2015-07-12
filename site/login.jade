@@ -6,8 +6,10 @@ html
     body
         if message
             p.message #{message}
+
         p.title Login
         form(action='/login', method='post', class='form-inline')
             input(type='text', name='user', placeholder='Username or Email', class='form-control')
             input(type='password', name='pass', placeholder='Password', class='form-control')
             input(type='submit', value='Login', class='btn btn-primary')
+

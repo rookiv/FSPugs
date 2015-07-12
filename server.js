@@ -23,7 +23,9 @@ require('./routes/auth.js')(app);
  */
 
 app.get('/', function (req, res) {
-    res.render('index.jade');
+    var msg = req.session.message;
+    req.session.message = null;
+    res.render('index.jade', {path: req.path, message: msg, personal: null});
 });
 
 app.get('/login', function (req, res) {
