@@ -33,7 +33,8 @@ body {
 }
 
 .top-bar .create {
-    background: repeating-linear-gradient(-55deg, #c44c39, #c44c39 10px, black 10px, black 20px);
+    background: repeating-linear-gradient(-45deg, #c44c39, #c44c39 10px, black 10px, black 20px);
+    background-size: 28px 100%;
     text-decoration: none;
     border: solid 2px #c44c39;
     border-radius: 0.5em;
@@ -45,12 +46,12 @@ body {
         background-position: 0 0;
     }
     100% {
-        background-position: 50px 0;
+        background-position: 28px 0;
     }
 }
 
 .top-bar .create:hover {
-    animation: backgroundMove 0.8s linear infinite;
+    animation: backgroundMove 0.5s linear infinite;
 }
 
 .top-bar .login,
@@ -94,8 +95,12 @@ body {
     width: 30%;
 }
 
+.pug-box .panel-heading {
+    background-color: #1c1e22;
+}
+
 .pug-box .panel-body {
-    background-color: gray;
+    background-color: #191919;
 }
 
 .pug-rules, .pug-players {
@@ -128,7 +133,9 @@ a.pug-join {
 a.pug-join:hover {
     color: white;
     border-color: #c44c39;
-    background: repeating-linear-gradient(-55deg, #c44c39, #c44c39 10px, black 10px, black 20px);
+    background: repeating-linear-gradient(-45deg, #c44c39, #c44c39 10px, black 10px, black 20px);
+    animation: backgroundMove 0.5s linear infinite;
+    background-size: 28px 100%;
 }
 
 a.pug-join:hover img {
