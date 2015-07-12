@@ -1,0 +1,42 @@
+.login-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    text-align: center;
+
+    background: rgba(28, 30, 34, 0.7);
+    border-radius: 1em;
+    padding: 2em 2em 1em;
+}
+
+.login-title {
+    margin: 0 1em 0.5em;
+    font-size: 2em;
+}
+
+.login-title img {
+    height: 4em;
+}
+
+.login-form {
+    font-size: 2em;
+    display: block;
+    overflow: hidden;
+}
+
+.form-control {
+    margin: 0 0 0.5em;
+}
+
+.btn.form-control {
+    margin: 0.5em 0 0 0;
+}
+
+.login-forgot {
+    font-size: 0.5em;
+    margin: 0.5em 0 0;
+    padding: 0;
+    float: right;
+}

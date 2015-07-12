@@ -25,15 +25,15 @@ require('./routes/auth.js')(app);
 app.get('/', function (req, res) {
     var msg = req.session.message;
     req.session.message = null;
-    res.render('index.jade', {path: req.path, message: msg, personal: null});
+    res.render('index.jade', {user: req.user, path: req.path, message: msg, personal: null});
 });
 
 app.get('/login', function (req, res) {
-    res.render('login.jade');
+    res.render('login.jade', {user: req.user, path: req.path});
 });
 
 app.get('/register', function (req, res) {
-    res.render('register.jade');
+    res.render('register.jade', {user: req.user, path: req.path});
 });
 
 app.get('/init', function (req, res) {

@@ -87,28 +87,35 @@ module.exports = function (app) {
                 if (err) {
                     return res.render('login.jade', {message: 'Login failed!'});
                 }
-                req.session.message = 'Login successful';
+                req.session.message = 'Login successful!';
                 return res.redirect('/');
             });
         })(req, res, next);
     });
 
     app.post('/register', function (req, res) {
+        if (req.body.pass !== req.body.pass2) {
+            res.render('register.jade', {message: 'Your passwords do not match!'});
+            return;
+        }
+
         models.Player.find({
-            where: {
-                username: req.body.user
-            }
+            where: models.Sequelize.or(
+                {email: req.body.email},
+                {username: req.body.user}
+            )
         }).then(function (model) {
             if (model != null) {
                 console.log('User already found');
-                res.render('register.jade', {user: req.user, message: 'User already exists!'});
+                res.render('register.jade', {message: 'User with this name or email already exists!'});
             } else {
                 models.Player.create({
                     username: req.body.user,
+                    email: req.body.email,
                     password: bcrypt.hashSync(req.body.pass)
                 }).then(function (result) {
                     console.log('User created.');
-                    res.render('register.jade', {user: req.user, message: 'User successfully registered!'});
+                    res.render('login.jade', {user: req.user, message: 'You have successfully registered!'});
                 }).catch(function (err) {
                     console.log(err);
                 });
@@ -118,6 +125,7 @@ module.exports = function (app) {
 
     app.get('/logout', function (req, res) {
         req.logout();
+        req.session.message = 'User logged out successfully!';
         res.redirect('/');
     });
 };

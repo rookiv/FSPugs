@@ -3,12 +3,21 @@ html
     head
         title Fractured Pugs - Register
         link(href='css/bootstrap.min.css' rel='stylesheet')
+        link(href='css/register.css' rel='stylesheet')
     body
-        if message
-            p.message #{message}
+        include include/top-bar
 
-        p.title Register
-        form(action='/register', method='post', class='form-inline')
-            input(type='text', name='user', placeholder='Username', class='form-control')
-            input(type='password', name='pass', placeholder='Password', class='form-control')
-            input(type='submit', value='Register', class='btn btn-primary')
+        .backdrop-cover
+            if message
+                .well.message #{message}
+
+            .register-center
+                .register-title
+                    img(src='img/logo.png' alt='logo')
+                form.form-horizontal.register-form(action='/register', method='post')
+                    .form-group-lg
+                        input.form-control(type='text', name='user', placeholder='Username')
+                        input.form-control(type='email', name='email', placeholder='Email')
+                        input.form-control(type='password', name='pass', placeholder='Password')
+                        input.form-control(type='password', name='pass2', placeholder='Password Again')
+                        input.btn.btn-primary.form-control(type='submit', value='Register')

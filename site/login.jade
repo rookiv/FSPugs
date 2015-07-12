@@ -3,13 +3,20 @@ html
     head
         title Fractured Pugs - Login
         link(href='css/bootstrap.min.css' rel='stylesheet')
+        link(href='css/login.css' rel='stylesheet')
     body
-        if message
-            p.message #{message}
+        include include/top-bar
 
-        p.title Login
-        form(action='/login', method='post', class='form-inline')
-            input(type='text', name='user', placeholder='Username or Email', class='form-control')
-            input(type='password', name='pass', placeholder='Password', class='form-control')
-            input(type='submit', value='Login', class='btn btn-primary')
+        .backdrop-cover
+            if message
+                .well.message #{message}
 
+            .login-center
+                .login-title
+                    img(src='img/logo.png' alt='logo')
+                form.form-horizontal.login-form(action='/login', method='post')
+                    .form-group-lg
+                        input.form-control(type='text', name='user', placeholder='Username or Email')
+                        input.form-control(type='password', name='pass', placeholder='Password')
+                        input.btn.btn-primary.form-control(type='submit', value='Login')
+                        a.login-forgot(href='/forgot') Forgot Password?

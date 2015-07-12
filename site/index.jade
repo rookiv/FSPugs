@@ -5,20 +5,12 @@ html
         link(href='css/bootstrap.min.css' rel='stylesheet')
         link(href='css/index.css' rel='stylesheet')
     body
-        if message
-            p.message #{message}
+        include include/top-bar.jade
 
-        .top-bar
-            a(href='/')
-                img(src='img/logo.png' alt='logo')
-            a(href='/leaders' class=path == '/leaders' ? 'active' : undefined) Leaderboards
-            a(href='/profile' class=path == '/profile' ? 'active' : undefined) Profile
-            a.create(href='/match/new' class=path == '/match' ? 'hidden' : undefined)
-                span Create Pug
-            a.register.btn.btn-primary(href='/register') Sign Up
-            a.login.btn.btn-primary(href='/login') Login
+        .backdrop-cover
+            if message
+                .well.message #{message}
 
-        .match
             if personal
                 .match-title Your Matches
                     .personal
@@ -44,7 +36,7 @@ html
                             img(src='img/join.png')
                         .pug-name.panel-title Test Match
                     .panel-body
-                        .pug-desc Description: Blah blah blah blarg
+                        .pug-desc Description: Blah blah blah blarg tester with super super long name that is supposed to break all your shit yo ahsjakuhisukajhsuiakhnfjhbgkuajnsajksn
                         ul.pug-rules Rules:
                             li.pug-rule Max 2 ship type per team
                             li.pug-rule No plasma caster

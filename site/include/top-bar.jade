@@ -1,0 +1,91 @@
+.top-bar
+    a(href='/')
+        img(src='img/logo.png' alt='logo')
+    a(href='/leaders' class=path == '/leaders' ? 'active' : undefined) Leaderboards
+    a(href='/profile' class=path == '/profile' ? 'active' : undefined) Profile
+    a.create(href='/match/new' class=path == '/match' ? 'hidden' : undefined)
+        span Create Pug
+    if !user
+        a.register.btn.btn-primary(href='/register') Sign Up
+        a.login.btn.btn-primary(href='/login') Login
+    else
+        a.logout.btn.btn-danger(href='/logout') Logout
+
+style(type='text/css').
+    @font-face {
+        font-family: 'Aero Matics Display';
+        src: url('../font/Aero Matics Display Regular.ttf');
+    }
+
+    @font-face {
+        font-family: 'Aero Matics';
+        src: url('../font/Aero Matics Regular.ttf');
+    }
+
+    html, body {
+        height: 100%;
+    }
+
+    body {
+        background: url(../img/background.png) no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    .backdrop-cover {
+        height: calc(100% - 85px);
+        background-color: rgba(39, 43, 48, 0.8);
+        color: white;
+        font-family: 'Aero Matics', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        margin: 0;
+        overflow: scroll;
+    }
+
+    .top-bar {
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 1em 1em 1em;
+        border-bottom: thin solid darkgray;
+        font-family: 'Aero Matics Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    .top-bar a {
+        color: white;
+        display: inline-block;
+        margin: 0 1.5em 0;
+        font-size: 2em;
+    }
+
+    .top-bar .create {
+        background: repeating-linear-gradient(-45deg, #c44c39, #c44c39 10px, black 10px, black 20px);
+        background-size: 28px 100%;
+        text-decoration: none;
+        border: solid 2px #c44c39;
+        border-radius: 0.5em;
+        padding: 0 1em 0;
+    }
+
+    @keyframes backgroundMove {
+        0% {
+            background-position: 0 0;
+        }
+        100% {
+            background-position: 28px 0;
+        }
+    }
+
+    .top-bar .create:hover {
+        animation: backgroundMove 0.5s linear infinite;
+    }
+
+    .top-bar .login,
+    .top-bar .register,
+    .top-bar .logout {
+        float: right;
+        margin: 0.6em 1em 0;
+        font-size: 1.2em;
+        font-family: 'Aero Matics', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    .message {
+        margin: 2em;
+        background-color: #1c1e22;
+    }
