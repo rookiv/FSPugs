@@ -1,0 +1,42 @@
+doctype html
+html
+    head
+        title Fractured Pugs
+        link(href='css/bootstrap.min.css' rel='stylesheet')
+        link(href='css/pug.css' rel='stylesheet')
+    body
+        include include/top-bar.jade
+
+        .backdrop-cover
+            if message
+                .well.message #{message}
+
+            .pug-center
+                .pug-title Create New Pug Match
+                form.form-horizontal.pug-create-form(action='/register', method='post')
+                    .form-group-lg
+                        textarea.form-control(name='desc', placeholder='Description (ie. Play 4 fun, high levels only, captains only...etc)')
+                    .pug-subtitle Rules
+                    .pug-create-rules
+                        .pug-create-rule.form-group.rule-number
+                            span Max number of ships per type:
+                            input(type='number', name='maxnumpertype', min='1', max='5', placeholder='2')
+                        .pug-create-rule.form-group.rule-number
+                            span Max match duration (minutes):
+                            input(type='number', name='maxmatchduration', min='0', max='99', placeholder='0')
+                        .pug-create-rule.form-group
+                            span Banned ships:
+                            .input-row
+                                input(type='text', name='bannedships', placeholder='None')
+                        .pug-create-rule.form-group
+                            span Banned weapons:
+                            .input-row
+                                input(type='text', name='bannedweapons', placeholder='None')
+                        .pug-create-rule.form-group
+                            span Custom rules:
+                            .input-row
+                                input(type='text', name='customrules', placeholder='None')
+
+
+                    input.pug-create-submit(type='submit', value='Go!')
+        script(src='js/jquery-2.1.4.min.js')

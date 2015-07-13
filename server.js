@@ -17,6 +17,7 @@ app.set('views', __dirname + '/site');
  */
 
 require('./routes/auth.js')(app);
+require('./routes/match.js')(app);
 
 /**
  * Views
