@@ -13,7 +13,7 @@ html
 
             .pug-center
                 .pug-title Create New Pug Match
-                form.form-horizontal.pug-create-form(action='/register', method='post')
+                form.form-horizontal.pug-create-form(action='/match/new', method='post')
                     .form-group-lg
                         textarea.form-control(name='desc', placeholder='Description (ie. Play 4 fun, high levels only, captains only...etc)')
                     .pug-subtitle Rules
@@ -36,7 +36,5 @@ html
                             span Custom rules:
                             .input-row
                                 input(type='text', name='customrules', placeholder='None')
-
-
                     input.pug-create-submit(type='submit', value='Go!')
         script(src='js/jquery-2.1.4.min.js')

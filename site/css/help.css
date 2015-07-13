@@ -1,0 +1,21 @@
+.help-center {
+    width: 100%;
+    height: 100%;
+
+    text-align: left;
+
+    background: rgba(28, 30, 34, 0.7);
+    border-radius: 1em;
+    padding: 2em 2em 1em;
+
+    overflow: scroll;
+}
+
+.help-center ol, .help-center ul {
+    font-size: 2em;
+}
+
+.help-center li {
+    margin-left: 1em;
+    font-size: 0.8em;
+}

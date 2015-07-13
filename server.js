@@ -33,6 +33,10 @@ app.get('/login', function (req, res) {
     res.render('login.jade', {user: req.user, path: req.path});
 });
 
+app.get('/help', function (req, res) {
+    res.render('help.jade', {user: req.user, path: req.path});
+});
+
 app.get('/register', function (req, res) {
     res.render('register.jade', {user: req.user, path: req.path});
 });

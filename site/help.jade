@@ -1,0 +1,32 @@
+doctype html
+html
+    head
+        title Fractured Pugs - Login
+        link(href='css/bootstrap.min.css' rel='stylesheet')
+        link(href='css/help.css' rel='stylesheet')
+    body
+        include include/top-bar
+
+        .backdrop-cover
+            if message
+                .well.message #{message}
+
+            .help-center
+                ol How to play:
+                    li Create or join a match Fractured Pugs.
+                    li  Once the match is full, players will be split into teams.
+                    li Coordinate when/where to play via MatchChat and join a server together when everyone is ready.
+                    li Play!
+                    li After the match, one player from each team must take a screenshot of the results and record the results on Fractured Pugs.
+
+                ul Rules:
+                    li No cheating or hacking!
+                    li To play, everyone must have an account on Fractured Pugs.
+                    li Everyone must stick to the teams as chosen on Fractured Pugs.
+                    li One player from each team must submit the result and a screenshot after a match, even if it ended in a tie.
+                    li If one team does not submit a result, then the other team's submission is automatically recorded as official.
+                    li If neither team submits a result within a day, the match is considered incomplete.
+                    li In the event of a server crash or an inrecoverable bug, the match shall be recorded as incomplete.
+                    li Some pug matches have custom rules regarding ship and weapons bans. Respect those!
+                    li By default rules, the match goes on until a team wins. However, this can be changed and  a max duration may be added. If that is the case, and no team wins by the time the max duration is reached, the game is considered a tie.
+                    li Report problem players with proof. They will be reviewed and appropriate actions taken.
