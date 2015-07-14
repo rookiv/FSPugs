@@ -10,73 +10,52 @@
     overflow: hidden;
 }
 
-.pug-box {
+.match-box {
     margin: 0 1em 2em;
     padding: 0;
     display: inline-block;
     overflow: hidden;
 
     font-size: 0.6em;
-    width: 30%;
+    width: 20em;
 }
 
-.pug-box .panel-heading {
+.match-box .panel-heading {
     background-color: #1c1e22;
 }
 
-.pug-box .panel-body {
+.match-box .panel-body {
     background-color: #191919;
 }
 
-.pug-rules, .pug-players {
+.match-rules, .match-players {
     margin-left: 0;
     -webkit-padding-start: 0;
     list-style-type: none;
 }
 
-.pug-rule, .pug-player {
-    margin-left: 2em;
-}
-
-.pug-desc, .pug-rule, .pug-player {
+.match-date, .match-time, .match-team1, .match-team2 {
     padding-left: 2em;
     text-indent: -2em;
 }
 
-.pug-name {
+.match-team1 {
+    margin-top: 1em;
+}
+
+.match-name {
     color: #c44c39;
     font-size: 1.2em;
 }
 
-a.pug-join {
+.match-time-remaining {
     float: right;
-    color: #c44c39;
+    font-size: 0.8em;
+}
+
+a.panel-heading,
+a.panel-heading:hover {
     text-decoration: none;
-    font-size: 1.2em;
-    line-height: 1.2em;
-    border: solid 2px #c44c39;
-    border-radius: 0.5em;
-}
-
-a.pug-join:hover {
-    color: white;
-    border-color: #c44c39;
-    background: repeating-linear-gradient(-45deg, #c44c39, #c44c39 10px, black 10px, black 20px);
-    animation: backgroundMove 0.5s linear infinite;
-    background-size: 28px 100%;
-}
-
-a.pug-join:hover img {
-    visibility: hidden;
-}
-
-a.pug-join img {
-    height: 1em;
-    vertical-align: middle;
-    margin: 0 0.2em 0;
-    visibility: visible;
-}
-
-a.pug-join span {
-    vertical-align: middle;
+    display: block;
+    cursor: pointer;
 }

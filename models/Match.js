@@ -1,16 +1,17 @@
 module.exports = function (sequelize, Sequelize) {
     var Match = sequelize.define('Match', {
-        name: {
+        description: {
             type: Sequelize.STRING,
             allowNull: false
         },
-        description: {
-            type: Sequelize.STRING
+        scheduled: {
+            type: Sequelize.DATE
         }
     }, {
         freezeTableName: true,
         classMethods: {
             associate: function (models) {
+                Match.belongsTo(models.Season, {as: 'season'});
             }
         }
     });

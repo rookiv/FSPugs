@@ -3,9 +3,8 @@
         img(src='img/logo.png' alt='logo')
     a(href='/leaders' class=path == '/leaders' ? 'active' : undefined) Leaderboards
     a(href='/profile' class=path == '/profile' ? 'active' : undefined) Profile
-    a.create(href='/pug' class=path == '/pug' ? 'hidden' : undefined)
-        span Create Pug
-    a.help.btn.btn-primary(href='help')
+    a(href='/clan' class=path == '/profile' ? 'active' : undefined) Clan
+    a.help(href='help')
         i.fa.fa-question-circle
         | Help
     if !user
@@ -38,7 +37,7 @@ style(type='text/css').
     }
 
     .backdrop-cover {
-        height: calc(100% - 85px);
+        height: calc(100% - 71px);
         background-color: rgba(39, 43, 48, 0.8);
         color: white;
         font-family: 'Aero Matics', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -50,23 +49,14 @@ style(type='text/css').
         background-color: rgba(0, 0, 0, 0.7);
         padding: 1em 1em 1em;
         border-bottom: thin solid darkgray;
-        font-family: 'Aero Matics Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-family: 'Aero Matics', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
 
     .top-bar a {
         color: white;
         display: inline-block;
-        margin: 0 1.5em 0;
-        font-size: 2em;
-    }
-
-    .top-bar .create {
-        background: repeating-linear-gradient(-45deg, #c44c39, #c44c39 10px, black 10px, black 20px);
-        background-size: 28px 100%;
-        text-decoration: none;
-        border: solid 2px #c44c39;
-        border-radius: 0.5em;
-        padding: 0 1em 0;
+        margin: 0 1em 0;
+        font-size: 1.5em;
     }
 
     .top-bar img {
@@ -82,16 +72,11 @@ style(type='text/css').
         }
     }
 
-    .top-bar .create:hover {
-        animation: backgroundMove 0.5s linear infinite;
-    }
-
     .top-bar .login,
     .top-bar .register,
-    .top-bar .logout,
-    .top-bar .help {
+    .top-bar .logout {
         float: right;
-        margin: 0.6em 1em 0;
+        margin: 0.2em 1em 0;
         font-size: 1.2em;
         font-family: 'Aero Matics', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
@@ -103,4 +88,12 @@ style(type='text/css').
     .message {
         margin: 2em;
         background-color: #1c1e22;
+    }
+
+    .match-join:hover {
+        color: white;
+        border-color: #c44c39;
+        background: repeating-linear-gradient(-45deg, #c44c39, #c44c39 10px, black 10px, black 20px);
+        animation: backgroundMove 0.5s linear infinite;
+        background-size: 28px 100%;
     }

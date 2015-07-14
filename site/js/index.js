@@ -1,7 +1,7 @@
 $(function () {
     $('.open').masonry({
-        itemSelector: '.pug-box',
-        columnWidth: '.pug-box',
+        itemSelector: '.match-box',
+        columnWidth: '.match-box',
         percentPosition: true
     });
 });
