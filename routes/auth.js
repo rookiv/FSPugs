@@ -78,14 +78,23 @@ module.exports = function (app) {
     app.post('/login', function (req, res, next) {
         passport.authenticate('local-user', function (err, user, info) {
             if (err) {
-                return res.render('login.jade', {message: 'Login failed!'});
+                return res.render('login.jade', {
+                    message: 'Login failed!',
+                    path: req.path
+                });
             }
             if (!user) {
-                return res.render('login.jade', {message: 'Login failed!'});
+                return res.render('login.jade', {
+                    message: 'Login failed!',
+                    path: req.path
+                });
             }
             req.logIn(user, function (err) {
                 if (err) {
-                    return res.render('login.jade', {message: 'Login failed!'});
+                    return res.render('login.jade', {
+                        message: 'Login failed!',
+                        path: req.path
+                    });
                 }
                 req.session.message = 'Login successful!';
                 return res.redirect('/');
@@ -95,7 +104,10 @@ module.exports = function (app) {
 
     app.post('/register', function (req, res) {
         if (req.body.pass !== req.body.pass2) {
-            res.render('register.jade', {message: 'Your passwords do not match!'});
+            res.render('register.jade', {
+                message: 'Your passwords do not match!',
+                path: req.path
+            });
             return;
         }
 
@@ -107,7 +119,10 @@ module.exports = function (app) {
         }).then(function (model) {
             if (model != null) {
                 console.log('User already found');
-                res.render('register.jade', {message: 'User with this name or email already exists!'});
+                res.render('register.jade', {
+                    message: 'User with this name or email already exists!',
+                    path: req.path
+                });
             } else {
                 models.Player.create({
                     username: req.body.user,
@@ -115,7 +130,11 @@ module.exports = function (app) {
                     password: bcrypt.hashSync(req.body.pass)
                 }).then(function (result) {
                     console.log('User created.');
-                    res.render('login.jade', {user: req.user, message: 'You have successfully registered!'});
+                    res.render('login.jade', {
+                        user: req.user,
+                        message: 'You have successfully registered!',
+                        path: req.path
+                    });
                 }).catch(function (err) {
                     console.log(err);
                 });
@@ -127,5 +146,20 @@ module.exports = function (app) {
         req.logout();
         req.session.message = 'User logged out successfully!';
         res.redirect('/');
+    });
+
+
+    app.get('/init', function (req, res) {
+        res.json('Re-initializing...');
+        models.sequelize.sync({force: true}).then(function () {
+            return models.Player.create({
+                username: 'rukqoa',
+                email: 'rukqoa@gmail.com',
+                ingame_nick: 'rukqoa',
+                password: bcrypt.hashSync('hunter2'),
+                profile_text: 'I built this site.',
+                role: 'Admin'
+            });
+        });
     });
 };

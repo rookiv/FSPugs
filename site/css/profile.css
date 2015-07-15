@@ -1,0 +1,54 @@
+.profile {
+    margin: 2em;
+}
+
+a.profile-edit {
+    margin-left: 1em;
+    font-size: 0.7em;
+    font-family: 'Aero Matics Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-decoration: none;
+    color: white;
+    border: solid thin white;
+    border-radius: 0.3em;
+    padding: 0.1em 0.2em 0.1em;
+}
+
+a.profile-edit:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.profile-username, .profile-edit-title {
+    font-size: 3em;
+    font-family: 'Aero Matics Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.profile-heading {
+    font-size: 2em;
+    font-family: 'Aero Matics Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    display: block;
+}
+
+.profile-subheading {
+    font-size: 1.5em;
+    font-family: 'Aero Matics Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    padding: 0 1em 0 0;
+}
+
+.profile-steam-name, .profile-text, .profile-role {
+    display: inline-block;
+    margin: 0 1em 0;
+    font-family: 'Aero Matics', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.profile-edit-form {
+    width: 20em;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.profile-edit-section {
+    margin: 1em 2em 2em;
+    display: inline-block;
+    text-align: center;
+}

@@ -17,7 +17,7 @@ app.set('views', __dirname + '/site');
  */
 
 require('./routes/auth.js')(app);
-require('./routes/match.js')(app);
+require('./routes/profile.js')(app);
 
 /**
  * Views
@@ -41,10 +41,6 @@ app.get('/register', function (req, res) {
     res.render('register.jade', {user: req.user, path: req.path});
 });
 
-app.get('/init', function (req, res) {
-    models.sequelize.sync({force: true});
-    res.json('re-initializing...');
-});
 
 /**
  * Static views

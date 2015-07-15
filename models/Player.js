@@ -19,6 +19,9 @@ module.exports = function (sequelize, Sequelize) {
         },
         profile_text: {
             type: Sequelize.STRING
+        },
+        role: {
+            type: Sequelize.STRING
         }
     }, {
         freezeTableName: true,

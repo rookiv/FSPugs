@@ -1,15 +1,15 @@
 .top-bar
     a(href='/')
         img(src='img/logo.png' alt='logo')
-    a(href='/leaders' class=path == '/leaders' ? 'active' : undefined) Leaderboards
-    a(href='/profile' class=path == '/profile' ? 'active' : undefined) Profile
-    a(href='/clan' class=path == '/profile' ? 'active' : undefined) Clan
+    a(href='/leaders', class=path == '/leaders' ? 'active' : undefined) Leaderboards
+    a(href='/profile', class=path == '/profile' ? 'active' : undefined) Profile
+    a(href='/clan', class=path == '/profile' ? 'active' : undefined) Clan
     a.help(href='help')
         i.fa.fa-question-circle
         | Help
     if !user
-        a.register.btn.btn-primary(href='/register') Sign Up
-        a.login.btn.btn-primary(href='/login') Login
+        a.register.btn.btn-primary(href='/register', class=path == '/register' ? 'hidden' : undefined) Sign Up
+        a.login.btn.btn-primary(href='/login', class=path == '/login' ? 'hidden' : undefined) Login
     else
         a.logout.btn.btn-danger(href='/logout') Logout
 

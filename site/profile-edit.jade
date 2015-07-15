@@ -1,0 +1,40 @@
+doctype html
+html
+    head
+        title Fractured League
+        link(href='css/bootstrap.min.css' rel='stylesheet')
+        link(href='css/profile.css' rel='stylesheet')
+    body
+        include include/top-bar.jade
+
+        .backdrop-cover
+            if message
+                .well.message #{message}
+
+            .profile
+                .profile-edit-title Edit Profile
+                .profile-edit-section
+                    .profile-heading Basic Information
+                    form.form-horizontal.profile-edit-form(action='/profile-edit', method='post')
+                        .form-group-lg
+                            input.form-control(type='text', name='steam', placeholder='Steam Name')
+                            input.form-control.profile-about-me(type='text', name='aboutme', placeholder='About Me')
+                            input.btn.btn-primary.form-control(type='submit', value='Finish Editing')
+
+                .profile-edit-section
+                    .profile-heading Change Contact Information
+                    form.form-horizontal.profile-edit-form(action='/profile-edit', method='post')
+                        .form-group-lg
+                            input.form-control(type='text', name='email', placeholder='New Email')
+                            input.btn.btn-primary.form-control(type='submit', value='Change Contact')
+                .profile-edit-section
+                    .profile-heading Change Password
+                    form.form-horizontal.profile-edit-form(action='/profile-edit', method='post')
+                        .form-group-lg
+                            input.form-control(type='password', name='currentpass', placeholder='Current Password')
+                            input.form-control(type='password', name='pass', placeholder='New Password')
+                            input.form-control(type='password', name='pass2', placeholder='New Password Again')
+                            input.btn.btn-danger.form-control(type='submit', value='Change Password')
+
+        script(src='js/jquery-2.1.4.min.js')
+        script(src='js/masonry.min.js')
