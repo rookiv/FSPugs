@@ -127,7 +127,9 @@ module.exports = function (app) {
                 models.Player.create({
                     username: req.body.user,
                     email: req.body.email,
-                    password: bcrypt.hashSync(req.body.pass)
+                    password: bcrypt.hashSync(req.body.pass),
+                    role: 'User',
+                    profile_text: 'I\'m new around here'
                 }).then(function (result) {
                     console.log('User created.');
                     res.render('login.jade', {

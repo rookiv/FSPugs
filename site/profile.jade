@@ -12,16 +12,16 @@ html
                 .well.message #{message}
 
             .profile
-                .profile-username rukqoa
+                .profile-username #{profile.username}
                     a.profile-edit(href='/profile-edit')
                         i.fa.fa-pencil
                 .profile-heading About
                 .profile-subheading Steam:
-                    .profile-steam-name rukqoa
+                    .profile-steam-name #{profile.ingame_nick}
                 .profile-subheading Role:
-                    .profile-role Admin
+                    .profile-role #{profile.role}
                 .profile-subheading About me:
-                    .profile-text Hi I built this site
+                    .profile-text #{profile.profile_text}
 
         script(src='js/jquery-2.1.4.min.js')
         script(src='js/masonry.min.js')
