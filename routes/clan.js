@@ -7,7 +7,18 @@ module.exports = function (app) {
         var msg = req.session.message;
         req.session.message = null;
 
-        if (req.query.id) {
+        if (req.query.browse) {
+            models.Clan.findAll({
+                include: [{model: models.Clan_Player, include: [models.Player]}]
+            }).then(function (clans) {
+                res.render('clan.jade', {
+                    user: req.user,
+                    path: req.path,
+                    results: clans,
+                    message: msg
+                });
+            });
+        } else if (req.query.id) {
             models.Clan.findAll({
                 where: {id: req.query.id},
                 include: [{model: models.Clan_Player, include: [models.Player]}]
@@ -21,13 +32,7 @@ module.exports = function (app) {
             });
         } else {
             models.Clan_Player.findAll({
-                where: models.Sequelize.and({
-                        PlayerId: req.user.id
-                    },
-                    models.Sequelize.or(
-                        {status: 'owner'},
-                        {status: 'member'}
-                    )),
+                where: {PlayerId: req.user.id},
                 include: [models.Clan]
             }).then(function (clans) {
                 res.render('clan.jade', {

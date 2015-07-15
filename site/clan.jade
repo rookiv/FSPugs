@@ -12,9 +12,19 @@ html
                 .well.message #{message}
 
             .page
-                if clan
+                if results
+                    .clan-heading Browse Clans
+                    .clan-listings
+                        each val in results
+                            a.clan-alert.alert.alert-success(href='/clan?id=' + val.id)
+                                .clan-name Name: #{val.name}
+                                .clan-description Description: #{val.description}
+                else if clan
                     - var cp=null;clan.Clan_Players.forEach(function(v,i){if(v.id===user.id)cp=v;});
+                    - var isInClan=false;clan.Clan_Players.forEach(function(v,i){if(v.id===user.id&&(v.status==='owner'||v.status==='member'||v.status==='pending'))isInClan=true;});
                     .clan-page
+                        if isInClan
+                            .clan-join Join
                         .clan-name Name: #{clan.name}
                         .clan-description Description: #{clan.description}
                         .clan-players Players (#{clan.Clan_Players.length})
@@ -36,16 +46,25 @@ html
                         .clan-heading You're not a part of something bigger? :(
                         .clan-heading
                             a.create-clan(href='/clan-create') Create a Clan
-                            a.join-clan(href='/clan-find') Join a Clan
+                            a.join-clan(href='/clan?browse=1') Join a Clan
                 else
                     .clan-heading
                         a.create-clan(href='/clan-create') Create a Clan
-                        a.join-clan(href='/clan-find') Join a Clan
+                        a.join-clan(href='/clan?browse=1') Join a Clan
 
-                    .clan-heading= clans.length > 1 ? 'Your Clans' : 'Your Clan'
+                    - var partOf=[];var pending=[];clans.forEach(function(v,i){if(v.id===user.id&&(v.status==='owner'||v.status==='member'))partOf.push(v);else if(v.status==='pending'||v.status==='invited')pending.push(v)});
+                    .clan-heading= partOf.length > 1 ? 'Your Clans' : 'Your Clan'
                     .clan-listings
-                        each val in clans
+                        each val in partOf
                             a.clan-alert.alert.alert-success(href='/clan?id=' + val.Clan.id)
                                 .clan-name Name: #{val.Clan.name}
                                 .clan-description Description: #{val.Clan.description}
                                 .clan-role Your Role: #{val.status}
+                    if pending.length > 0
+                        .clan-heading= 'Pending'
+                        .clan-listings
+                            each val in pending
+                                a.clan-alert.alert.alert-success(href='/clan?id=' + val.Clan.id)
+                                    .clan-name Name: #{val.Clan.name}
+                                    .clan-description Description: #{val.Clan.description}
+                                    .clan-role Your Role: #{val.status}

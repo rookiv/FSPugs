@@ -7,10 +7,10 @@
     a(href='/profile', class=path == '/profile' ? 'active' : undefined)
         i.fa.fa-user
         | Profile
-    a(href='/clan', class=path == '/profile' ? 'active' : undefined)
+    a(href='/clan', class=path == '/clan' ? 'active' : undefined)
         i.fa.fa-users
         | Clan
-    a.help(href='help')
+    a.help(href='help', class=path == '/help' ? 'active' : undefined)
         i.fa.fa-question-circle
         | Help
     if !user
@@ -89,6 +89,10 @@ style(type='text/css').
 
     .top-bar i {
         margin-right: 0.5em;
+    }
+
+    .top-bar a.active {
+        color: #c44c39;
     }
 
     .message {
