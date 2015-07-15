@@ -3,13 +3,16 @@ module.exports = function (sequelize, Sequelize) {
         status: {
             type: Sequelize.STRING,
             allowNull: false
+        },
+        message: {
+            type: Sequelize.STRING
         }
     }, {
         freezeTableName: true,
         classMethods: {
             associate: function (models) {
-                Clan_Player.belongsTo(models.Player, {as: 'player'});
-                Clan_Player.belongsTo(models.Clan, {as: 'clan'});
+                Clan_Player.belongsTo(models.Player);
+                Clan_Player.belongsTo(models.Clan);
             }
         }
     });

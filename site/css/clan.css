@@ -1,0 +1,118 @@
+.page {
+    margin: 2em;
+}
+
+/* No clans */
+
+.no-clan {
+    display: block;
+    text-align: center;
+}
+
+.clan-heading {
+    font-size: 3em;
+    text-align: center;
+    margin-bottom: 0.5em;
+}
+
+.join-clan {
+    border: solid 3px #c44c39;
+    background: repeating-linear-gradient(-45deg, #c44c39, #c44c39 10px, black 10px, black 20px);
+}
+
+.create-clan {
+    border: solid 3px #39b1c4;
+    background: repeating-linear-gradient(-45deg, #39b1c4, #39b1c4 10px, black 10px, black 20px);
+}
+
+.create-clan, .join-clan {
+    color: white;
+    background-size: 28px 100%;
+    border-radius: 0.5em;
+
+    display: inline-block;
+
+    font-size: 0.8em;
+    margin: 1em;
+    padding: 0.3em;
+    text-decoration: none;
+
+    font-family: 'Aero Matics Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: bold;
+}
+
+.create-clan:hover, .join-clan:hover {
+    text-decoration: none;
+    color: white;
+    animation: backgroundMove 0.5s linear infinite;
+}
+
+/* Create clans */
+
+.clan-create-heading {
+    font-size: 3em;
+    text-align: center;
+}
+
+.clan-create-form {
+    width: 50%;
+    min-width: 60em;
+    margin: 0 auto;
+}
+
+.create-clan-submit.form-control {
+    border: solid 3px #39b1c4;
+    background: repeating-linear-gradient(-45deg, #39b1c4, #39b1c4 10px, black 10px, black 20px);
+
+    color: white;
+    background-size: 28px 100%;
+    border-radius: 0.5em;
+
+    display: inline-block;
+
+    margin-top: 1em;
+
+    font-size: 2em;
+    padding: 0.3em;
+    text-decoration: none;
+
+    font-family: 'Aero Matics Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: bold;
+}
+
+.create-clan-submit:hover {
+    text-decoration: none;
+    color: white;
+    animation: backgroundMove 0.5s linear infinite;
+}
+
+/* Clans display */
+
+.clan-alert {
+    display: inline-block;
+    width: 20em;
+    font-size: 1.5em;
+    margin-right: 1em;
+    text-align: left;
+}
+
+.clan-alert:hover {
+    text-decoration: none;
+    color: #3c763d;
+}
+
+.clan-listings {
+    text-align: center;
+}
+
+/* Clan page */
+
+.clan-page {
+    font-size: 1.5em;
+}
+
+a.clan-player,
+a.clan-player:hover {
+    color: #c44c39;
+    text-decoration: none;
+}

@@ -1,0 +1,23 @@
+doctype html
+html
+    head
+        title Fractured League - Clans
+        link(href='css/bootstrap.min.css' rel='stylesheet')
+        link(href='css/clan.css' rel='stylesheet')
+    body
+        include include/top-bar.jade
+
+        .backdrop-cover
+            if message
+                .well.message #{message}
+
+            .page
+                .clan-create-heading Create Clan
+                form.form-horizontal.clan-create-form(action='/clan-create', method='post')
+                    .form-group-lg
+                        input.form-control(type='text', name='name', placeholder='Clan Name')
+                        textarea.form-control(rows='5', name='desc', placeholder='Clan Description')
+                        input.create-clan-submit.form-control(type='submit', value='Create Clan')
+
+        script(src='js/jquery-2.1.4.min.js')
+        script(src='js/masonry.min.js')

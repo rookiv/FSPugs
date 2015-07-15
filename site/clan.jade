@@ -1,0 +1,51 @@
+doctype html
+html
+    head
+        title Fractured League - Clans
+        link(href='css/bootstrap.min.css' rel='stylesheet')
+        link(href='css/clan.css' rel='stylesheet')
+    body
+        include include/top-bar.jade
+
+        .backdrop-cover
+            if message
+                .well.message #{message}
+
+            .page
+                if clan
+                    - var cp=null;clan.Clan_Players.forEach(function(v,i){if(v.id===user.id)cp=v;});
+                    .clan-page
+                        .clan-name Name: #{clan.name}
+                        .clan-description Description: #{clan.description}
+                        .clan-players Players (#{clan.Clan_Players.length})
+                        table.table.clan-table
+                            tr
+                                th Player
+                                th Steam Name
+                                th Role
+                                th Group Member Since
+                            each val, index in clan.Clan_Players
+                                tr
+                                    td
+                                        a.clan-player(href='/profile?id=' + val.Player.id)= val.Player.username
+                                    td= val.Player.ingame_nick
+                                    td= val.status
+                                    td= val.updatedAt
+                else if !clans
+                    .no-clans
+                        .clan-heading You're not a part of something bigger? :(
+                        .clan-heading
+                            a.create-clan(href='/clan-create') Create a Clan
+                            a.join-clan(href='/clan-find') Join a Clan
+                else
+                    .clan-heading
+                        a.create-clan(href='/clan-create') Create a Clan
+                        a.join-clan(href='/clan-find') Join a Clan
+
+                    .clan-heading= clans.length > 1 ? 'Your Clans' : 'Your Clan'
+                    .clan-listings
+                        each val in clans
+                            a.clan-alert.alert.alert-success(href='/clan?id=' + val.Clan.id)
+                                .clan-name Name: #{val.Clan.name}
+                                .clan-description Description: #{val.Clan.description}
+                                .clan-role Your Role: #{val.status}
