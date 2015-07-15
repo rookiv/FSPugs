@@ -1,9 +1,15 @@
 .top-bar
     a(href='/')
         img(src='img/logo.png' alt='logo')
-    a(href='/leaders', class=path == '/leaders' ? 'active' : undefined) Leaderboards
-    a(href='/profile', class=path == '/profile' ? 'active' : undefined) Profile
-    a(href='/clan', class=path == '/profile' ? 'active' : undefined) Clan
+    a(href='/leaders', class=path == '/leaders' ? 'active' : undefined)
+        i.fa.fa-list-ol
+        | Leaderboards
+    a(href='/profile', class=path == '/profile' ? 'active' : undefined)
+        i.fa.fa-user
+        | Profile
+    a(href='/clan', class=path == '/profile' ? 'active' : undefined)
+        i.fa.fa-users
+        | Clan
     a.help(href='help')
         i.fa.fa-question-circle
         | Help
@@ -81,7 +87,7 @@ style(type='text/css').
         font-family: 'Aero Matics', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
 
-    .top-bar a.help i {
+    .top-bar i {
         margin-right: 0.5em;
     }
 

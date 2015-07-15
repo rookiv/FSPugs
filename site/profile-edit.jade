@@ -19,6 +19,7 @@ html
                         .form-group-lg
                             input.form-control(type='text', name='steam', placeholder='Steam Name')
                             input.form-control.profile-about-me(type='text', name='aboutme', placeholder='About Me')
+                            input(name='type', type='hidden', value='basic')
                             input.btn.btn-primary.form-control(type='submit', value='Finish Editing')
 
                 .profile-edit-section
@@ -26,6 +27,7 @@ html
                     form.form-horizontal.profile-edit-form(action='/profile-edit', method='post')
                         .form-group-lg
                             input.form-control(type='text', name='email', placeholder='New Email')
+                            input(name='type', type='hidden', value='contact')
                             input.btn.btn-primary.form-control(type='submit', value='Change Contact')
                 .profile-edit-section
                     .profile-heading Change Password
@@ -34,6 +36,7 @@ html
                             input.form-control(type='password', name='currentpass', placeholder='Current Password')
                             input.form-control(type='password', name='pass', placeholder='New Password')
                             input.form-control(type='password', name='pass2', placeholder='New Password Again')
+                            input(name='type', type='hidden', value='password')
                             input.btn.btn-danger.form-control(type='submit', value='Change Password')
 
         script(src='js/jquery-2.1.4.min.js')

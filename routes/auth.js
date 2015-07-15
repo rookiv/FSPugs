@@ -97,6 +97,11 @@ module.exports = function (app) {
                     });
                 }
                 req.session.message = 'Login successful!';
+
+                if (req.session.returnTo) {
+                    return res.redirect(req.session.returnTo);
+                }
+
                 return res.redirect('/');
             });
         })(req, res, next);

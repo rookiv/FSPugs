@@ -13,5 +13,7 @@ function ensureUser(req, res, next) {
         return next();
     }
 
+    req.session.returnTo = req.url;
+
     res.redirect('/login');
 }
