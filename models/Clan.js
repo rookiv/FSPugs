@@ -6,12 +6,15 @@ module.exports = function (sequelize, Sequelize) {
         },
         description: {
             type: Sequelize.STRING
+        },
+        secret_code: {
+            type: Sequelize.STRING
         }
     }, {
         freezeTableName: true,
         classMethods: {
             associate: function (models) {
-                Clan.hasMany(models.Clan_Player);
+                Clan.hasMany(models.Player);
             }
         }
     });

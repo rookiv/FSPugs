@@ -15,9 +15,20 @@
     margin-bottom: 0.5em;
 }
 
+.clan-subheading {
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 0.5em;
+}
+
 .join-clan {
     border: solid 3px #c44c39;
     background: repeating-linear-gradient(-45deg, #c44c39, #c44c39 10px, black 10px, black 20px);
+}
+
+.join-clan.join-clan-btn {
+    font-size: 1.5em;
+    vertical-align: middle;
 }
 
 .create-clan {
@@ -86,6 +97,18 @@
     animation: backgroundMove 0.5s linear infinite;
 }
 
+/* Leave clan */
+.clan-leave-form .btn {
+    display: inline-block;
+    width: 10em;
+    margin: 1em;
+}
+
+.clan-leave-form .form-group-lg,
+.clan-join-form .form-group-lg {
+    text-align: center;
+}
+
 /* Clans display */
 
 .clan-alert {
@@ -115,4 +138,18 @@ a.clan-player,
 a.clan-player:hover {
     color: #c44c39;
     text-decoration: none;
+}
+
+a.clan-secret-reveal,
+a.clan-secret-reveal:hover,
+a.clan-action,
+a.clan-action:hover {
+    color: #c44c39;
+    text-decoration: none;
+    display: block;
+}
+
+a.clan-secret-reveal span {
+    margin-left: 1em;
+    color: white;
 }

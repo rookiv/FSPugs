@@ -13,58 +13,52 @@ html
 
             .page
                 if results
-                    .clan-heading Browse Clans
-                    .clan-listings
-                        each val in results
-                            a.clan-alert.alert.alert-success(href='/clan?id=' + val.id)
-                                .clan-name Name: #{val.name}
-                                .clan-description Description: #{val.description}
+                    .clan-heading Join Clan
+                    form.clan-join-form.form-inline(action='/clan-join', method='post')
+                        .form-group-lg
+                            input.form-control(type='text', name='code', placeholder='Join Code')
+                            input.join-clan.join-clan-btn(type='submit', value='Join Clan')
                 else if clan
-                    - var cp=null;clan.Clan_Players.forEach(function(v,i){if(v.id===user.id)cp=v;});
-                    - var isInClan=false;clan.Clan_Players.forEach(function(v,i){if(v.id===user.id&&(v.status==='owner'||v.status==='member'||v.status==='pending'))isInClan=true;});
                     .clan-page
-                        if isInClan
-                            .clan-join Join
                         .clan-name Name: #{clan.name}
                         .clan-description Description: #{clan.description}
-                        .clan-players Players (#{clan.Clan_Players.length})
                         table.table.clan-table
                             tr
                                 th Player
                                 th Steam Name
-                                th Role
                                 th Group Member Since
-                            each val, index in clan.Clan_Players
+                            each val, index in clan.Players
                                 tr
                                     td
-                                        a.clan-player(href='/profile?id=' + val.Player.id)= val.Player.username
-                                    td= val.Player.ingame_nick
-                                    td= val.status
+                                        a.clan-player(href='/profile?id=' + val.id)= val.username
+                                    td= val.ingame_nick
                                     td= val.updatedAt
-                else if !clans
+                else if player && !player.ClanId
                     .no-clans
                         .clan-heading You're not a part of something bigger? :(
                         .clan-heading
                             a.create-clan(href='/clan-create') Create a Clan
                             a.join-clan(href='/clan?browse=1') Join a Clan
                 else
-                    .clan-heading
-                        a.create-clan(href='/clan-create') Create a Clan
-                        a.join-clan(href='/clan?browse=1') Join a Clan
+                    .clan-heading Your Clan
+                    .clan-page
+                        .clan-name Name: #{player.Clan.name}
+                        .clan-description Description: #{player.Clan.description}
+                        a.clan-action(href='/clan-leave') Leave Clan
+                        a.clan-secret-reveal(href='#') View Join Code
+                            span (SHARE ONLY WITH TRUSTED CLAN MEMBERS)
+                        .clan-secret-code.hidden #{player.Clan.secret_code}
+                        table.table.clan-table
+                            tr
+                                th Player
+                                th Steam Name
+                                th Group Member Since
+                            each val, index in player.Clan.Players
+                                tr
+                                    td
+                                        a.clan-player(href='/profile?id=' + val.id)= val.username
+                                    td= val.ingame_nick
+                                    td= val.updatedAt
 
-                    - var partOf=[];var pending=[];clans.forEach(function(v,i){if(v.id===user.id&&(v.status==='owner'||v.status==='member'))partOf.push(v);else if(v.status==='pending'||v.status==='invited')pending.push(v)});
-                    .clan-heading= partOf.length > 1 ? 'Your Clans' : 'Your Clan'
-                    .clan-listings
-                        each val in partOf
-                            a.clan-alert.alert.alert-success(href='/clan?id=' + val.Clan.id)
-                                .clan-name Name: #{val.Clan.name}
-                                .clan-description Description: #{val.Clan.description}
-                                .clan-role Your Role: #{val.status}
-                    if pending.length > 0
-                        .clan-heading= 'Pending'
-                        .clan-listings
-                            each val in pending
-                                a.clan-alert.alert.alert-success(href='/clan?id=' + val.Clan.id)
-                                    .clan-name Name: #{val.Clan.name}
-                                    .clan-description Description: #{val.Clan.description}
-                                    .clan-role Your Role: #{val.status}
+        script(src='js/jquery-2.1.4.min.js')
+        script(src='js/clan.js')

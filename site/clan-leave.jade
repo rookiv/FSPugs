@@ -1,0 +1,20 @@
+doctype html
+html
+    head
+        title Fractured League - Clans
+        link(href='css/bootstrap.min.css' rel='stylesheet')
+        link(href='css/clan.css' rel='stylesheet')
+    body
+        include include/top-bar.jade
+
+        .backdrop-cover
+            if message
+                .well.message #{message}
+
+            .page
+                .clan-heading Leaving Clan
+                .clan-subheading Are you sure? You may not be able to join back without a code!
+                form.clan-leave-form(action='/clan-leave', method='post')
+                    .form-group-lg
+                        a.btn.btn-success.form-control(href='/clan') No
+                        input.btn.btn-danger.form-control(type='submit', value='Yes')
