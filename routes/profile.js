@@ -8,7 +8,10 @@ module.exports = function (app) {
         req.session.message = null;
 
         if (req.query.id) {
-            models.Player.find(req.query.id).then(function (player) {
+            models.Player.find({
+                where: {id: req.query.id},
+                include: [{model: models.Clan, include: [models.Player]}]
+            }).then(function (player) {
                 res.render('profile.jade', {
                     user: req.user,
                     path: req.path,
@@ -18,7 +21,10 @@ module.exports = function (app) {
             });
         } else {
             // Assume your own
-            models.Player.find(req.user.id).then(function (player) {
+            models.Player.find({
+                where: {id: req.user.id},
+                include: [{model: models.Clan, include: [models.Player]}]
+            }).then(function (player) {
                 res.render('profile.jade', {
                     user: req.user,
                     path: req.path,

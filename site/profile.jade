@@ -22,6 +22,9 @@ html
                     .profile-role #{profile.role}
                 .profile-subheading About me:
                     .profile-text #{profile.profile_text}
+                if profile.Clan
+                    .profile-subheading Clan:
+                        .profile-text #{profile.Clan.name}
 
         script(src='js/jquery-2.1.4.min.js')
         script(src='js/masonry.min.js')
