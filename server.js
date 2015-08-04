@@ -19,6 +19,8 @@ app.set('views', __dirname + '/site');
 require('./routes/auth.js')(app);
 require('./routes/profile.js')(app);
 require('./routes/clan.js')(app);
+require('./routes/season.js')(app);
+require('./routes/elevated.js')(app);
 
 /**
  * Views

@@ -1,0 +1,14 @@
+doctype html
+html
+    head
+        title Fractured League - Seasons
+        link(href='css/bootstrap.min.css' rel='stylesheet')
+        link(href='css/season.css' rel='stylesheet')
+    body
+        include include/top-bar
+
+        .backdrop-cover
+            if message
+                .well.message #{message}
+
+            p Admin Panel

@@ -1,0 +1,21 @@
+.admin-panel {
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    padding: 2em 2em 1em;
+    overflow: scroll;
+}
+
+.admin-heading {
+    font-size: 2em;
+}
+
+.admin-subheading {
+    font-size: 1.5em;
+    margin-left: 2em;
+}
+
+.admin-action {
+    font-size: 0.8em;
+    margin-left: 2em;
+}

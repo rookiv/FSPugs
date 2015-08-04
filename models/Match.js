@@ -11,7 +11,9 @@ module.exports = function (sequelize, Sequelize) {
         freezeTableName: true,
         classMethods: {
             associate: function (models) {
-                Match.belongsTo(models.Season, {as: 'season'});
+                Match.belongsTo(models.Season);
+                Match.belongsTo(models.Clan, {as: 'TeamOne'});
+                Match.belongsTo(models.Clan, {as: 'TeamTwo'});
             }
         }
     });

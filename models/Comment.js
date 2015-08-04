@@ -8,8 +8,8 @@ module.exports = function (sequelize, Sequelize) {
         freezeTableName: true,
         classMethods: {
             associate: function (models) {
-                Comment.belongsTo(models.Player, {as: 'player'});
-                Comment.belongsTo(models.Match, {as: 'match'});
+                Comment.belongsTo(models.Player, {as: 'Player'});
+                Comment.belongsTo(models.Match, {as: 'Match'});
             }
         }
     });

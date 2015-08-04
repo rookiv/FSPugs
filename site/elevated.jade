@@ -1,0 +1,69 @@
+doctype html
+html
+    head
+        title Fractured League - Seasons
+        link(href='css/bootstrap.min.css' rel='stylesheet')
+        link(href='css/elevated.css' rel='stylesheet')
+    body
+        include include/top-bar
+
+        .backdrop-cover
+            if message
+                .well.message #{message}
+
+            .admin-panel
+                .admin-heading Admin Controls
+                .admin-subheading Seasons
+                    .admin-action Create New Season
+                        form.form-inline(action='/elevated-create-season', method='post')
+                            .form-group
+                                input.form-control(type='text', name='name', placeholder='Season Name')
+                                input.form-control(type='text', name='desc', placeholder='Season Description')
+                                input.btn.btn-success.form-control(type='submit', value='Create New Season')
+                    .admin-action Modify Season Information
+                        form.form-inline(action='/elevated-modify-season', method='post')
+                            .form-group
+                                select.form-control(name='season')
+                                    each val in seasons
+                                        option(value=val.id) #{val.name}
+                                input.form-control(type='text', name='name', placeholder='New Season Name')
+                                input.form-control(type='text', name='desc', placeholder='New Season Description')
+                                input.btn.btn-warning.form-control(type='submit', value='Modify Season')
+                    .admin-action Remove Season
+                        form.form-inline(action='/elevated-remove-season', method='post')
+                            .form-group
+                                select.form-control(name='season')
+                                    each val in seasons
+                                        option(value=val.id) #{val.name}
+                                input.btn.btn-danger.form-control(type='submit', value='Remove Season')
+                .admin-subheading Users
+                    .admin-action Ban User
+                        form.form-inline(action='/elevated-ban-user', method='post')
+                            .form-group
+                                select.form-control(name='user')
+                                    each val in users
+                                        option(value=val.id) #{val.username}
+                                input.btn.btn-danger.form-control(type='submit', value='Ban User')
+                    .admin-action Unban User
+                        form.form-inline(action='/elevated-unban-user', method='post')
+                            .form-group
+                                select.form-control(name='user')
+                                    each val in users
+                                        option(value=val.id) #{val.username}
+                                input.btn.btn-danger.form-control(type='submit', value='Unban User')
+                    .admin-action Upgrade User to Admin
+                        form.form-inline(action='/elevated-upgrade-user', method='post')
+                            .form-group
+                                select.form-control(name='user')
+                                    each val in users
+                                        option(value=val.id) #{val.username}
+                                input.btn.btn-warning.form-control(type='submit', value='Upgrade User')
+                .admin-subheading Clans
+                    .admin-action Dissolve Clan
+                        form.form-inline(action='/elevated-dissolve-clan', method='post')
+                            .form-group
+                                select.form-control(name='clan')
+                                    each val in clans
+                                        option(value=val.id) #{val.name} (#{val.Players ? val.Players.length : 0} members)
+                                input.btn.btn-danger.form-control(type='submit', value='Dissolve Clan')
+                .admin-subheading Matches

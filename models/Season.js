@@ -11,6 +11,7 @@ module.exports = function (sequelize, Sequelize) {
         freezeTableName: true,
         classMethods: {
             associate: function (models) {
+                Season.hasMany(models.Match);
             }
         }
     });

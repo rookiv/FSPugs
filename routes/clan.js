@@ -1,7 +1,6 @@
 module.exports = function (app) {
     var models = require('../models');
     var ensure = require('./ensure.js');
-    var bcrypt = require('bcrypt-nodejs');
 
     app.get('/clan', ensure.user, function (req, res) {
         var msg = req.session.message;
