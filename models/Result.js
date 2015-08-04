@@ -12,8 +12,7 @@ module.exports = function (sequelize, Sequelize) {
         freezeTableName: true,
         classMethods: {
             associate: function (models) {
-                Result.belongsTo(models.Match, {as: 'match'});
-                Result.belongsTo(models.Player, {as: 'submitter'});
+                Result.belongsTo(models.Match, {as: 'Match'});
             }
         }
     });

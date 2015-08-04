@@ -15,8 +15,8 @@ module.exports = function (sequelize, Sequelize) {
         classMethods: {
             associate: function (models) {
                 Clan.hasMany(models.Player);
-                Clan.hasMany(models.Match, {through: 'TeamOne'});
-                Clan.hasMany(models.Match, {through: 'TeamTwo'});
+                Clan.hasMany(models.Match, {as: 'TeamOne'});
+                Clan.hasMany(models.Match, {as: 'TeamTwo'});
             }
         }
     });

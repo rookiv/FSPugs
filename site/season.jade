@@ -11,4 +11,18 @@ html
             if message
                 .well.message #{message}
 
-            p Admin Panel
+            each season, index in seasons
+                table.table
+                    tr
+                        th Ranking
+                        th Team Name
+                        th Wins
+                        th Losses
+                        th Ties
+                    each val, index in season
+                        tr
+                            td #{index + 1}
+                            td
+                            td
+                            td
+                            td
