@@ -5,14 +5,14 @@ module.exports = function (sequelize, Sequelize) {
             allowNull: false
         },
         screenshot_url: {
-            type: Sequelize.STRING,
-            allowNull: false
+            type: Sequelize.STRING
         }
     }, {
         freezeTableName: true,
         classMethods: {
             associate: function (models) {
                 Result.belongsTo(models.Match, {as: 'Match'});
+                Result.belongsTo(models.Clan, {as: 'Submitter'});
             }
         }
     });

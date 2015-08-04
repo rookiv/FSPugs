@@ -21,7 +21,7 @@ html
                 else if clan
                     .clan-page
                         .clan-name Name: #{clan.name}
-                        .clan-description Description: #{clan.description}
+                        .clan-description Description: #{clan.desc}
                         table.table.clan-table
                             tr
                                 th Player
@@ -43,7 +43,7 @@ html
                     .clan-heading Your Clan
                     .clan-page
                         .clan-name Name: #{player.Clan.name}
-                        .clan-description Description: #{player.Clan.description}
+                        .clan-description Description: #{player.Clan.desc}
                         a.clan-action(href='/clan-leave') Leave Clan
                         a.clan-secret-reveal(href='#') View Join Code
                             span (SHARE ONLY WITH TRUSTED CLAN MEMBERS)

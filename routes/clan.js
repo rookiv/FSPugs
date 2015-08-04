@@ -69,7 +69,7 @@ module.exports = function (app) {
 
         models.Clan.create({
             name: req.body.name,
-            description: req.body.desc,
+            desc: req.body.desc,
             secret_code: secret
         }).then(function (clan) {
             return clan.save();

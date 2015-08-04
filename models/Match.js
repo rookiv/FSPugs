@@ -1,8 +1,7 @@
 module.exports = function (sequelize, Sequelize) {
     var Match = sequelize.define('Match', {
-        description: {
-            type: Sequelize.STRING,
-            allowNull: false
+        desc: {
+            type: Sequelize.STRING
         },
         scheduled: {
             type: Sequelize.DATE

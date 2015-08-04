@@ -9,7 +9,7 @@
     "passport-local": "1.0.0",
     "passport-totp": "0.0.1",
     "express-session": "1.9.0",
-    "sequelize": "2.0.0-rc8",
+    "sequelize": "3.5.1",
     "jade": "^1.9.2",
     "body-parser": "1.12.2"
   }

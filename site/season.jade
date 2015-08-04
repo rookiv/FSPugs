@@ -12,6 +12,7 @@ html
                 .well.message #{message}
 
             each season, index in seasons
+                .season-table #{season.name}
                 table.table
                     tr
                         th Ranking
@@ -19,10 +20,12 @@ html
                         th Wins
                         th Losses
                         th Ties
-                    each val, index in season
+                    -var index = 0
+                    each val, key in season.clans
                         tr
-                            td #{index + 1}
+                            td #{++index}
                             td
-                            td
-                            td
-                            td
+                                a(href='/clan?id=' + key) #{val.name}
+                            td #{val.wins}
+                            td #{val.losses}
+                            td #{val.ties}

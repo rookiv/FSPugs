@@ -4,7 +4,7 @@ module.exports = function (sequelize, Sequelize) {
             type: Sequelize.STRING,
             allowNull: false
         },
-        description: {
+        desc: {
             type: Sequelize.STRING
         },
         secret_code: {
@@ -15,8 +15,9 @@ module.exports = function (sequelize, Sequelize) {
         classMethods: {
             associate: function (models) {
                 Clan.hasMany(models.Player);
-                Clan.hasMany(models.Match, {as: 'TeamOne'});
-                Clan.hasMany(models.Match, {as: 'TeamTwo'});
+                Clan.hasMany(models.Match, {foreignKey: 'TeamOneId', as: 'TeamOne'});
+                Clan.hasMany(models.Match, {foreignKey: 'TeamTwoId', as: 'TeamTwo'});
+                Clan.hasMany(models.Result, {as: 'Submitter'});
             }
         }
     });
