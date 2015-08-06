@@ -1,0 +1,15 @@
+.table a {
+    color: #c44c39;
+}
+
+.table a:hover {
+    color: white;
+}
+
+.versus {
+    margin: 0 1em 0;
+}
+
+.table.season-matches td.active {
+    background-color: #4e4e68;
+}

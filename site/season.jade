@@ -11,7 +11,6 @@ html
             if message
                 .well.message #{message}
 
-            .season-heading Rankings
             each season, index in rankings
                 .season-table #{season.name}
                 table.table
@@ -32,16 +31,17 @@ html
                             td #{val.ties}
                 .season-heading #{matches[season.name]}
 
-            .season-heading Match Results
             each season, index in matches
                 .season-table #{season.name}
-                table.table
+                table.table.season-matches
                     tr
-                        th Team One
-                        th Team Two
+                        th Match results
                     each val, key in season.Matches
                         tr
-                            td
+                            td(data-href='/match?id=' + val.id)
                                 a(href='/clan?id=' + val.TeamOne.id) #{val.TeamOne.name}
-                            td
+                                span.versus vs
                                 a(href='/clan?id=' + val.TeamTwo.id) #{val.TeamTwo.name}
+
+        script(src='js/jquery-2.1.4.min.js')
+        script(src='js/season.js')
