@@ -5,6 +5,9 @@ module.exports = function (sequelize, Sequelize) {
         },
         scheduled: {
             type: Sequelize.DATE
+        },
+        final_result: {
+            type: Sequelize.STRING
         }
     }, {
         freezeTableName: true,

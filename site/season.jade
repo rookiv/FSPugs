@@ -11,7 +11,8 @@ html
             if message
                 .well.message #{message}
 
-            each season, index in seasons
+            .season-heading Rankings
+            each season, index in rankings
                 .season-table #{season.name}
                 table.table
                     tr
@@ -29,3 +30,18 @@ html
                             td #{val.wins}
                             td #{val.losses}
                             td #{val.ties}
+                .season-heading #{matches[season.name]}
+
+            .season-heading Match Results
+            each season, index in matches
+                .season-table #{season.name}
+                table.table
+                    tr
+                        th Team One
+                        th Team Two
+                    each val, key in season.Matches
+                        tr
+                            td
+                                a(href='/clan?id=' + val.TeamOne.id) #{val.TeamOne.name}
+                            td
+                                a(href='/clan?id=' + val.TeamTwo.id) #{val.TeamTwo.name}

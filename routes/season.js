@@ -6,13 +6,20 @@ module.exports = function (app) {
         var msg = req.session.message;
         req.session.message = null;
 
-        var clans = [], seasons = {};
+        var rankings = {};
 
         models.Clan.findAll({
             include: [
-                {model: models.Match, as: 'TeamOne', include: [models.Season, models.Result]},
-                {model: models.Match, as: 'TeamTwo', include: [models.Season, models.Result]}
-                //{ all: true }
+                {
+                    model: models.Match,
+                    as: 'TeamOne',
+                    include: [models.Season]
+                },
+                {
+                    model: models.Match,
+                    as: 'TeamTwo',
+                    include: [models.Season]
+                }
             ]
         }).then(function (result) {
             result.forEach(function (clanV, i) {
@@ -20,80 +27,88 @@ module.exports = function (app) {
                 clan.id = clanV.id;
                 clan.name = clanV.name;
 
-                console.log(clanV.toJSON());
-
                 clanV.TeamOne.forEach(function (matchV, i) {
-                    var result = matchV.Results[0].result;
+                    var result = matchV.final_result;
                     var season = matchV.Season;
 
                     // create season if not exists
-                    if (!(season.name in seasons)) {
-                        seasons[season.name] = {};
-                        seasons[season.name].id = season.id;
-                        seasons[season.name].name = season.name;
-                        seasons[season.name].desc = season.desc;
-                        seasons[season.name].clans = {};
+                    if (!(season.name in rankings)) {
+                        rankings[season.name] = {};
+                        rankings[season.name].id = season.id;
+                        rankings[season.name].name = season.name;
+                        rankings[season.name].desc = season.desc;
+                        rankings[season.name].clans = {};
                     }
 
                     // create clan in season if not exists
-                    if (!(clan.id in seasons[season.name].clans)) {
-                        seasons[season.name].clans[clan.id] = {};
-                        seasons[season.name].clans[clan.id].name = clan.name;
-                        seasons[season.name].clans[clan.id].wins = 0;
-                        seasons[season.name].clans[clan.id].losses = 0;
-                        seasons[season.name].clans[clan.id].ties = 0;
+                    if (!(clan.id in rankings[season.name].clans)) {
+                        rankings[season.name].clans[clan.id] = {};
+                        rankings[season.name].clans[clan.id].name = clan.name;
+                        rankings[season.name].clans[clan.id].wins = 0;
+                        rankings[season.name].clans[clan.id].losses = 0;
+                        rankings[season.name].clans[clan.id].ties = 0;
                     }
 
                     // record results
                     if (result === 'TeamOne') {
-                        seasons[season.name].clans[clan.id].wins++;
+                        rankings[season.name].clans[clan.id].wins++;
                     } else if (result === 'TeamTwo') {
-                        seasons[season.name].clans[clan.id].losses++;
+                        rankings[season.name].clans[clan.id].losses++;
                     } else if (result === 'Tie') {
-                        seasons[season.name].clans[clan.id].ties++;
+                        rankings[season.name].clans[clan.id].ties++;
                     }
                 });
 
                 clanV.TeamTwo.forEach(function (matchV, i) {
-                    var result = matchV.Results[0].result;
+                    var result = matchV.final_result;
                     var season = matchV.Season;
 
                     // create season if not exists
-                    if (!(season.name in seasons)) {
-                        seasons[season.name] = {};
-                        seasons[season.name].id = season.id;
-                        seasons[season.name].name = season.name;
-                        seasons[season.name].desc = season.desc;
-                        seasons[season.name].clans = {};
+                    if (!(season.name in rankings)) {
+                        rankings[season.name] = {};
+                        rankings[season.name].id = season.id;
+                        rankings[season.name].name = season.name;
+                        rankings[season.name].desc = season.desc;
+                        rankings[season.name].clans = {};
                     }
 
                     // create clan in season if not exists
-                    if (!(clan.id in seasons[season.name].clans)) {
-                        seasons[season.name].clans[clan.id] = {};
-                        seasons[season.name].clans[clan.id].name = clan.name;
-                        seasons[season.name].clans[clan.id].wins = 0;
-                        seasons[season.name].clans[clan.id].losses = 0;
-                        seasons[season.name].clans[clan.id].ties = 0;
+                    if (!(clan.id in rankings[season.name].clans)) {
+                        rankings[season.name].clans[clan.id] = {};
+                        rankings[season.name].clans[clan.id].name = clan.name;
+                        rankings[season.name].clans[clan.id].wins = 0;
+                        rankings[season.name].clans[clan.id].losses = 0;
+                        rankings[season.name].clans[clan.id].ties = 0;
                     }
 
                     // record results
                     if (result === 'TeamTwo') {
-                        seasons[season.name].clans[clan.id].wins++;
+                        rankings[season.name].clans[clan.id].wins++;
                     } else if (result === 'TeamOne') {
-                        seasons[season.name].clans[clan.id].losses++;
+                        rankings[season.name].clans[clan.id].losses++;
                     } else if (result === 'Tie') {
-                        seasons[season.name].clans[clan.id].ties++;
+                        rankings[season.name].clans[clan.id].ties++;
                     }
                 });
             });
-
-            console.log(JSON.stringify(seasons));
         }).then(function () {
+            return models.Season.findAll({
+                include: [{
+                    model: models.Match,
+                    include: [
+                        {model: models.Clan, as: 'TeamOne'},
+                        {model: models.Clan, as: 'TeamTwo'}
+                    ]
+                }]
+            });
+        }).then(function (matches) {
+            console.log(JSON.stringify(matches));
             res.render('season.jade', {
                 user: req.user,
                 path: req.path,
                 message: msg,
-                seasons: seasons
+                rankings: rankings,
+                matches: matches
             });
         });
     });
@@ -124,21 +139,15 @@ module.exports = function (app) {
             return models.Match.create({
                 TeamOneId: clan1Id,
                 TeamTwoId: clan2Id,
-                SeasonId: seasonId
-            });
-        }).then(function (match) {
-            matchId = match.id;
-
-            return models.Result.create({
-                result: 'TeamOne',
-                MatchId: matchId,
-                SubmitterId: clan1Id
+                SeasonId: seasonId,
+                final_result: 'TeamOne'
             });
         }).then(function () {
-            return models.Result.create({
-                result: 'TeamOne',
-                MatchId: matchId,
-                SubmitterId: clan2Id
+            return models.Match.create({
+                TeamOneId: clan2Id,
+                TeamTwoId: clan1Id,
+                SeasonId: seasonId,
+                final_result: 'TeamTwo'
             });
         });
     });
